@@ -28,6 +28,7 @@ t <- as.factor(c(hpc$Time))
 head(t)
 t2 <- strptime(hpc$Time,format = "%X")
 head(t2)
+#x<- mutate(X3 = ymd_hm(paste(household_power_consumption$Date, household_power_consumption$Time)))
 
 ##also includes the current date - exclude date
 
@@ -78,16 +79,10 @@ plot2
 #Sub_metering_1 black 
 #Sub_metering_2 red
 #Sub_metering_3 blue 
-plot3 <- ggplot(data = hpc, aes(x = weekdays , y = Sub_metering_1, y= Sub_metering_2))+ 
-  geom_line()+
-  theme(axis.text.x = element_text(angle = 90, hjust = 1))+
-  ylab("Global Active Power (kilowatts)")
-plot3
-
-
-ggplot(hpc, aes(x=weekdays)) + 
+plot3 <- ggplot(hpc, aes(x=dt)) + 
   geom_line(aes(y=Sub_metering_1, color="Sub_metering_1")) + 
   geom_line(aes(y=Sub_metering_2, color="Sub_metering_2")) + 
   geom_line(aes(y=Sub_metering_3, color="Sub_metering_3")) +
-  ylab("Global Active Power (kilowatts)")
-
+  ylab("Global Active Power (kilowatts)") +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1))
+plot3

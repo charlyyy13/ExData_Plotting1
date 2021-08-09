@@ -29,10 +29,13 @@ rm(s, d, date)
 
 #Plot 1 - Global Active Power 
 head(hpc$Global_active_power)
-
+#open png file
+png("plot1.png", width = 480, height = 480)
+#create plot
 plot1 <- hist(hpc$Global_active_power,
               breaks= 20 ,
               main="Global Active Power", 
               xlab="Gloal Active Power (kilowatts)", 
               col="red")
-plot1
+#close the file
+dev.off()
