@@ -1,5 +1,9 @@
-#load dataset houshold power consumption (hcp)
+#load packages
 library(readr)
+library(tidyverse)
+library(lubridate)
+library(ggplot2)
+#load dataset houshold power consumption (hcp)
 household_power_consumption <- read_delim("~/Documents/Private/R/household_power_consumption.txt", 
                                                ";", escape_double = FALSE, trim_ws = TRUE)
 

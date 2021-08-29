@@ -1,5 +1,9 @@
-#load dataset houshold power consumption (hcp)
+#load packages
 library(readr)
+library(tidyverse)
+library(lubridate)
+library(ggplot2)
+#load dataset houshold power consumption (hcp)
 household_power_consumption <- read_delim("~/Documents/Private/R/household_power_consumption.txt", 
                                           +     ";", escape_double = FALSE, trim_ws = TRUE)
 hpc <- household_power_consumption
@@ -36,12 +40,10 @@ head(tt)
 time <- strftime(tt, format = "%H:%M:%S") #conver to date in right format
 head(time)
 
-
-
 #Plot 2 - Global Active Power on Thu Fri Sat including time
 df <- hpc$Global_active_power
 
-#first convert to date and secondly as weekdays
+#convert to weekdays
 weekdays <- weekdays(dt)
 summary(weekdays)
 #ordering days
@@ -49,21 +51,12 @@ weekdays <- factor(weekdays,levels = c("Thursday", "Friday", "Saturday"))
 head(weekdays)
 summary(weekdays)
 
-library(tidyverse)
-library(lubridate)
-library(ggplot2)
-#Plot2
-p <- ggplot(hpc, aes(x=dt, y=hpc$Global_active_power)) +
-  geom_line() + 
-  xlab("") +
-  ylab("Global Active Power (kilowatts)")
-p
-p + scale_x_date(dt2)
-p
-str(dt)
-str("dt1")
 
 #Plot2
+#open png file
 png("plot2.png", width = 480, height = 480)
-plot2 <- with(hpc,plot(dt,Global_active_power))
+#create plot
+plot2 <- with(hpc,plot(dt, Global_active_power,type="l"))
+plot2 
+#close the file
 dev.off()
