@@ -8,6 +8,7 @@ household_power_consumption <- read_delim("~/Documents/Private/R/household_power
                                           +     ";", escape_double = FALSE, trim_ws = TRUE)
 hpc <- household_power_consumption
 
+##Clean data
 #convert Date - as.Date
 head(hpc$Date) 
 d <- as.factor(c(hpc$Date)) #convert to factor
@@ -24,6 +25,8 @@ s <- hpc[hpc$Date >= "2007-02-01" & hpc$Date <= "2007-02-02",]
 summary(s)
 #apply to dataset
 hpc <- hpc[hpc$Date >= "2007-02-01" & hpc$Date <= "2007-02-02",]
+#remove unnecessary variables
+rm(s, d, date)
 
 #date and time combined
 dt<- as.POSIXct(paste(hpc$Date, hpc$Time), format="%Y-%m-%d %H:%M:%S")
@@ -37,11 +40,8 @@ str(dt2)
 head(hpc$Time) 
 tt <- as.factor(c(hpc$Time)) #convert to factor
 head(tt)
-time <- strftime(tt, format = "%H:%M:%S") #conver to date in right format
+time <- strftime(tt, format = "%H:%M:%S") #convert to date in right format
 head(time)
-
-#Plot 2 - Global Active Power on Thu Fri Sat including time
-df <- hpc$Global_active_power
 
 #convert to weekdays
 weekdays <- weekdays(dt)
@@ -52,7 +52,7 @@ head(weekdays)
 summary(weekdays)
 
 
-#Plot2
+##Plot2
 #open png file
 png("plot2.png", width = 480, height = 480)
 #create plot

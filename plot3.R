@@ -8,11 +8,12 @@ household_power_consumption <- read_delim("~/Documents/Private/R/household_power
                                               ";", escape_double = FALSE, trim_ws = TRUE)
 hpc <- household_power_consumption
 
+##Clean data
 #convert Date - as.Date
 head(hpc$Date) 
 d <- as.factor(c(hpc$Date)) #convert to factor
 head(d)
-date <- as.Date(d, format = "%d/%m/%Y") #conver to date in right format
+date <- as.Date(d, format = "%d/%m/%Y") #convert to date in right format
 head(date)
 #apply to dataset
 hpc$Date <- as.factor(c(hpc$Date))
@@ -24,16 +25,17 @@ s <- hpc[hpc$Date >= "2007-02-01" & hpc$Date <= "2007-02-02",]
 summary(s)
 #apply to dataset
 hpc <- hpc[hpc$Date >= "2007-02-01" & hpc$Date <= "2007-02-02",]
-rm(s)
 #date and time combined
 dt<- as.POSIXct(paste(hpc$Date, hpc$Time), format="%Y-%m-%d %H:%M:%S")
 str(dt)
 datetime <- dt
 #convert to weekdays
 weekdays <- weekdays(dt)
+#remove unnecessary variables
+rm(s, d, date)
 
-######
-#Plot 3 - Energy sub metering 
+
+##Plot 3 - Energy sub metering 
 #Sub_metering_1 black 
 #Sub_metering_2 red
 #Sub_metering_3 blue 

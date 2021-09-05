@@ -8,6 +8,7 @@ household_power_consumption <- read_delim("~/Documents/Private/R/household_power
                                           +     ";", escape_double = FALSE, trim_ws = TRUE)
 hpc <- household_power_consumption
 
+##Clean data
 #convert Date - as.Date
 head(hpc$Date) 
 d <- as.factor(c(hpc$Date)) #convert to factor
@@ -30,7 +31,7 @@ dt<- as.POSIXct(paste(hpc$Date, hpc$Time), format="%Y-%m-%d %H:%M:%S")
 str(dt)
 datetime <- dt
 
-#Plot4
+##Plot4
 #graphic device for mac
 quartz()
 #open png file
@@ -64,5 +65,3 @@ ploty
 #close the file
 dev.off()
 
-#change plot2 yaxis 
-#plot 3 no x axis text and no 40 

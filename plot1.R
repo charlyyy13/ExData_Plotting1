@@ -9,14 +9,12 @@ household_power_consumption <- read_delim("~/Documents/Private/R/household_power
 
 hpc <- household_power_consumption
 
-#Plot1
-#Clean data
+##Clean data
 #Convert Date - as.Date and apply to dataset
-#convert Date - as.Date
 head(hpc$Date) 
 d <- as.factor(c(hpc$Date)) #convert to factor
 head(d)
-date <- as.Date(d, format = "%d/%m/%Y") #conver to date in right format
+date <- as.Date(d, format = "%d/%m/%Y") #convert to date with correct format
 head(date)
 #apply to dataset
 hpc$Date <- as.factor(c(hpc$Date))
@@ -28,10 +26,10 @@ s <- hpc[hpc$Date >= "2007-02-01" & hpc$Date <= "2007-02-02",]
 summary(s)
 #apply to dataset
 hpc <- hpc[hpc$Date >= "2007-02-01" & hpc$Date <= "2007-02-02",]
-#remove unneeded variables
+#remove unnecessary variables
 rm(s, d, date)
 
-#Plot 1 - Global Active Power 
+##Plot 1 - Global Active Power 
 head(hpc$Global_active_power)
 #open png file
 png("plot1.png", width = 480, height = 480)
