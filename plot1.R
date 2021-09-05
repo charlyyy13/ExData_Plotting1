@@ -6,9 +6,6 @@ library(ggplot2)
 #load dataset houshold power consumption (hcp)
 hpc<-read.table("household_power_consumption.txt",sep=";",header=T)
 
-
-hpc <- household_power_consumption
-
 ##Clean data
 #Convert Date - as.Date and apply to dataset
 head(hpc$Date) 
